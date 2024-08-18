@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/style.css">
-        <title>Страница редактирования организации - [[${organization.name}]]</title>
+        <title>Страница создания организации - [[${organization.name}]]</title>
     </head>
     <body>
         <header class="header">Header</header>
         <main class="main">
-            <form class="edit_form grid_area" th:action="@{/organization/id/{id}(id=*{organization.id})}" th:method="patch">
+            <form class="edit_form grid_area" action="/organization/new" th:method="post">
 
                 <label for="id">ID</label>
                 <input type="text" id="id" th:value="${organization.id}" readonly>
@@ -60,9 +60,6 @@
                 <textarea name="description" id="description" maxlength="500" th:text="${organization.description}"></textarea>
 
                 <button type="submit">Сохранить</button>
-            </form>
-            <form th:if="${organization.id != null}" action="/organization/id/" th:method="delete">
-                <button type="submit">Удалить</button>
             </form>
         </main>
         <nav class="nav">

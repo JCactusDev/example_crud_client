@@ -53,4 +53,9 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
     }
 
+    @Override
+    public void deleteById(Long id) {
+        restTemplate.delete("http://localhost:8080/api/organization/" + id, Organization.class);
+    }
+
 }

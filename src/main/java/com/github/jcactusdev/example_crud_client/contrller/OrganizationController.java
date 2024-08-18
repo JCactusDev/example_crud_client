@@ -20,9 +20,8 @@ public class OrganizationController {
 
     @GetMapping("/new")
     public String createGet(Model model) {
-        model.addAttribute("formAction", "/organization/new");
         model.addAttribute("organization", new Organization());
-        return "organization/organizationEdit.html";
+        return "organization/organizationCreate.html";
     }
 
     @PostMapping("/new")
@@ -52,7 +51,7 @@ public class OrganizationController {
         return "organization/organizationEdit.html";
     }
 
-    @PostMapping("/id/{id}")
+    @PatchMapping("/id/{id}")
     public String update(Model model, @PathVariable("id") Long id, @ModelAttribute("organization") Organization organization) {
         organization.setId(id);
         Organization result = serviceImpl.updateObject(organization);
@@ -63,5 +62,10 @@ public class OrganizationController {
         return "organization/organizationEdit.html";
     }
 
+    @DeleteMapping("/id/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        serviceImpl.deleteById(id);
+        return "redirect:/organization";
+    }
 
 }
