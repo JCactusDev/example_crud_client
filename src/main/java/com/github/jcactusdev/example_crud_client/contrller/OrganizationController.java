@@ -27,9 +27,6 @@ public class OrganizationController {
     @PostMapping("/new")
     public String createPost(Model model, @ModelAttribute("organization") Organization organization) {
         Organization result = serviceImpl.create(organization);
-        if (result == null) {
-            return "redirect:/organization/new";
-        }
         return "redirect:/organization/id/" + result.getId();
     }
 
@@ -43,9 +40,6 @@ public class OrganizationController {
     @GetMapping("/id/{id}")
     public String read(Model model, @PathVariable("id") Long id) {
         Organization result = serviceImpl.read(id);
-        if (result == null) {
-            return "redirect:/organization";
-        }
         model.addAttribute("formAction", "/organization/id/" + result.getId());
         model.addAttribute("organization", result);
         return "organization/organizationEdit.html";
@@ -55,9 +49,6 @@ public class OrganizationController {
     public String update(Model model, @PathVariable("id") Long id, @ModelAttribute("organization") Organization organization) {
         organization.setId(id);
         Organization result = serviceImpl.updateObject(organization);
-        if (result == null) {
-            return "redirect:/organization";
-        }
         model.addAttribute("organization", result);
         return "organization/organizationEdit.html";
     }

@@ -19,11 +19,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization create(Organization organization) {
-        try {
-            return restTemplate.postForObject("http://localhost:8080/api/organization", organization, Organization.class);
-        } catch (RestClientException e) {
-            return null;
-        }
+        return restTemplate.postForObject("http://localhost:8080/api/organization", organization, Organization.class);
     }
 
     @Override
@@ -37,20 +33,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization read(Long id) {
-        try {
-            return restTemplate.getForObject("http://localhost:8080/api/organization/" + id, Organization.class);
-        } catch (RestClientException e) {
-            return null;
-        }
+        return restTemplate.getForObject("http://localhost:8080/api/organization/" + id, Organization.class);
     }
 
     @Override
     public Organization updateObject(Organization organization) {
-        try {
-            return restTemplate.patchForObject("http://localhost:8080/api/organization", organization, Organization.class);
-        } catch (RestClientException e) {
-            return null;
-        }
+        return restTemplate.patchForObject("http://localhost:8080/api/organization", organization, Organization.class);
     }
 
     @Override
